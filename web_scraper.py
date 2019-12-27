@@ -10,10 +10,10 @@ soup = BeautifulSoup(page.content, 'html.parser')
 results = soup.find(id='ResultsContainer')
 
 jobs = results.find_all('section', class_='card-content')
-job_links = json.loads(BeautifulSoup(page.text, 'html.parser').find_all("script", type="application/ld+json")[1].text)
-all_urls = [dct["url"] for dct in job_links["itemListElement"]]
+link_elements = json.loads(BeautifulSoup(page.text, 'html.parser').find_all("script", type="application/ld+json")[1].text)
+job_links = [dictionary["url"] for dictionary in link_elements["itemListElement"]]
 
-for job, link in zip(jobs, all_urls):
+for job, link in zip(jobs, job_links):
     job_title = job.find('h2', class_='title')
     company = job.find('div', class_='company')
     location = job.find('div', class_='location')
