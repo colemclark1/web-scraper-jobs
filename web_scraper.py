@@ -24,4 +24,3 @@ for job, link in zip(jobs, all_urls):
     print(f'Location: \t{location.text.strip()}')
     print(f'Link: \t\t{link}')
     print()
-
